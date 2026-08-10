@@ -32,3 +32,11 @@ yarn-error.log*
 # auto-generated agent guides (disabled via next.config agentRules:false)
 /AGENTS.md
 /CLAUDE.md
+
+# generated audit reports
+/reports/
+
+# installed agent skills (local tooling, not app code)
+/.agents/
+/.claude/skills/
+/skills-lock.json

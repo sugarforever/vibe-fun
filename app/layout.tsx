@@ -22,7 +22,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} — ${SITE.tagline}`,
+    default: `${SITE.name} — Play Games in ChatGPT & Claude · MCP Apps`,
     template: `%s · ${SITE.name}`,
   },
   description: SITE.description,
@@ -81,10 +81,21 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Organization",
+      "@id": `${SITE.url}/#organization`,
+      name: SITE.name,
+      url: SITE.url,
+      logo: `${SITE.url}/icon.svg`,
+      description: SITE.description,
+      sameAs: [SITE.githubUrl],
+    },
+    {
       "@type": "WebSite",
+      "@id": `${SITE.url}/#website`,
       name: SITE.name,
       url: SITE.url,
       description: SITE.description,
+      publisher: { "@id": `${SITE.url}/#organization` },
     },
     {
       "@type": "SoftwareApplication",
@@ -92,6 +103,7 @@ const jsonLd = {
       applicationCategory: "GameApplication",
       operatingSystem: "Any (MCP host)",
       description: SITE.description,
+      publisher: { "@id": `${SITE.url}/#organization` },
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     },
   ],

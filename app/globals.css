@@ -284,6 +284,22 @@ p { margin: 0; }
 .logmsg.out { background: rgba(76, 125, 255, 0.1); border-left: 3px solid #4c7dff; }
 .logmsg.meta { background: rgba(124, 92, 255, 0.08); border-left: 3px solid var(--brand); color: var(--text-muted); }
 
+/* ---------- prose / legal pages ---------- */
+.prose-page { max-width: 780px; margin: 0 auto; padding: 56px 22px 24px; }
+.prose-page .eyebrow { margin-bottom: 12px; }
+.prose-page h1 { font-size: clamp(30px, 4.5vw, 46px); margin-bottom: 10px; }
+.prose-updated { color: var(--text-dim); font-size: 14px; margin-bottom: 28px; }
+.prose { color: var(--text-muted); font-size: 16px; line-height: 1.7; }
+.prose h2 { color: var(--text); font-size: 22px; margin: 34px 0 12px; }
+.prose h3 { color: var(--text); font-size: 17px; margin: 22px 0 8px; }
+.prose p { margin: 0 0 14px; }
+.prose ul { margin: 0 0 16px; padding-left: 22px; }
+.prose li { margin: 6px 0; }
+.prose a { color: var(--brand-2); text-decoration: none; }
+.prose a:hover { text-decoration: underline; }
+.prose strong { color: var(--text); }
+.prose code { font-family: var(--font-mono); font-size: 0.92em; background: #0c0f16; border: 1px solid var(--border); border-radius: 6px; padding: 1px 6px; }
+
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; gap: 34px; }

@@ -50,6 +50,13 @@ export default function Footer() {
               MCP Apps spec
             </a>
           </div>
+
+          <div className="footer-col">
+            <h4>Company</h4>
+            <Link href="/about">About</Link>
+            <Link href="/privacy">Privacy</Link>
+            <Link href="/terms">Terms</Link>
+          </div>
         </div>
 
         <div className="footer-bottom">
