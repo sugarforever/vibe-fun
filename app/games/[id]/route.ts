@@ -2,7 +2,7 @@ import { getApp } from "@/lib/apps";
 
 /**
  * Raw HTML preview of an app, served as ordinary `text/html`. This is NOT the
- * MCP transport — it exists so humans (and the test harness iframe) can load an
+ * MCP transport — it exists so humans (and the /play page iframe) can load an
  * app directly in a browser. The MCP wire form is served via /api/mcp as a
  * `ui://` resource with mimeType `text/html;profile=mcp-app`.
  */

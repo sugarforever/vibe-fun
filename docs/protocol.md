@@ -55,7 +55,7 @@ JSON-RPC over `window.postMessage`. Messages this server's apps use:
 | Host → View (notif) | `ui/notifications/tool-result` | Tool output / `structuredContent` |
 
 The bridge implementation is `lib/apps/bridge.ts` (`window.mcpApp`). The
-reference **host** side is `public/harness.html`.
+reference **host** side lives in `components/PlayClient.tsx` (the `/play` page).
 
 ## 4. Persistence (app-layer convention)
 

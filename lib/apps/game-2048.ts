@@ -4,14 +4,15 @@ import type { AppCatalogEntry } from "./types";
 const CSS = `
   .board-wrap { position: relative; width: min(92vw, 480px); }
   .grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
-    background: var(--muted); border-radius: 10px; padding: 10px; aspect-ratio: 1 / 1;
+    display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr);
+    gap: 10px; background: var(--muted); border-radius: 10px; padding: 10px; aspect-ratio: 1 / 1;
     touch-action: none; user-select: none;
   }
   .tile {
     display: flex; align-items: center; justify-content: center;
     border-radius: 6px; background: var(--panel); color: var(--fg);
     font-weight: 800; line-height: 1; transition: transform .08s ease;
+    min-width: 0; min-height: 0; overflow: hidden;
   }
   .tile.pop { animation: pop .16s ease; }
   @keyframes pop { 0% { transform: scale(.7); } 60% { transform: scale(1.08); } 100% { transform: scale(1); } }

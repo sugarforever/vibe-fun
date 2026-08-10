@@ -31,11 +31,11 @@ npm run dev            # http://localhost:3000/api/mcp
 npm run stdio
 ```
 
-Open `http://localhost:3000` for a landing page, or
-`http://localhost:3000/harness.html?app=2048` for the **host emulator** — a
-reference implementation of the host side of the MCP Apps bridge (sandboxed
-iframe + JSON-RPC over postMessage + localStorage persistence) that lets you
-play and inspect the full protocol without a compliant host.
+Open `http://localhost:3000` for the site, or
+`http://localhost:3000/play/2048` to **play in the browser** — a reference
+implementation of the host side of the MCP Apps bridge (sandboxed iframe +
+JSON-RPC over postMessage + localStorage persistence). Add `?debug=1` (or use
+the in-page “Developer log” toggle) to watch the full protocol live.
 
 ## How to use
 
@@ -54,8 +54,8 @@ This server emits the standard SEP-1865 contract (`text/html;profile=mcp-app` +
 `_meta.ui.resourceUri`) and also sets the `openai/outputTemplate` alias, so it
 renders **as-is** in ChatGPT — no OpenAI-specific build needed.
 
-> Want a guaranteed-playable target right now, on any machine? Use the bundled
-> **harness** (bottom of this section) — it's a reference host that renders and
+> Want a guaranteed-playable target right now, on any machine? Use the built-in
+> **play page** (bottom of this section) — a reference host that renders and
 > plays the apps locally.
 
 ### ChatGPT — renders the apps
@@ -120,13 +120,14 @@ url = "https://vibe-fun.vercel.app/api/mcp"
 
 ```bash
 npm run dev
-# open http://localhost:3000/harness.html?app=2048
-#      http://localhost:3000/harness.html?app=sudoku
+# open http://localhost:3000/play/2048
+#      http://localhost:3000/play/sudoku
 ```
 
-The harness is a reference MCP Apps **host**: it renders the app in a sandboxed
-iframe, speaks the postMessage/JSON-RPC bridge, persists progress to
-localStorage, and logs every message so you can watch the whole protocol.
+The `/play` page is a reference MCP Apps **host**: it renders the app in a
+sandboxed iframe, speaks the postMessage/JSON-RPC bridge, and persists progress
+to localStorage. The raw protocol log is hidden by default — toggle “Developer
+log” (or add `?debug=1`) to watch every message.
 
 ## Deploy to Vercel
 
@@ -148,20 +149,25 @@ Redis/session store** and scales as plain functions.
 
 ```
 app/
-  api/mcp/route.ts     # Streamable HTTP MCP endpoint (mcp-handler)
-  games/[id]/route.ts  # raw text/html preview (humans + harness iframe)
-  page.tsx             # landing page
-bin/stdio.ts           # local stdio transport
+  api/mcp/route.ts       # Streamable HTTP MCP endpoint (mcp-handler)
+  games/[id]/route.ts    # raw text/html preview (humans + play-page iframe)
+  play/[id]/page.tsx     # in-browser play page (reference MCP Apps host)
+  page.tsx               # marketing landing page
+  layout.tsx             # site chrome + SEO metadata + JSON-LD
+  sitemap.ts, robots.ts  # SEO
+  opengraph-image.tsx    # dynamic OG image
+bin/stdio.ts             # local stdio transport
+components/              # Nav, Footer, PlayClient (host bridge), icons
 lib/
   apps/
-    types.ts           # catalog schema + protocol constants
-    bridge.ts          # shared postMessage/JSON-RPC bridge + HTML builder
-    game-2048.ts       # 2048 app (HTML + catalog entry)
-    game-sudoku.ts     # Sudoku app (HTML + catalog entry)
-    index.ts           # the catalog (APPS)
-  mcp/register.ts      # registerApps(server) — shared by both transports
-public/harness.html    # reference MCP Apps host emulator
-docs/                  # protocol + "add an app" guide
+    types.ts             # catalog schema + protocol constants
+    bridge.ts            # shared postMessage/JSON-RPC bridge + HTML builder
+    game-2048.ts         # 2048 app (HTML + catalog entry)
+    game-sudoku.ts       # Sudoku app (HTML + catalog entry)
+    index.ts             # the catalog (APPS)
+  mcp/register.ts        # registerApps(server) — shared by both transports
+  site.ts                # site config used by pages + SEO
+docs/                    # protocol + "add an app" guide
 ```
 
 ## Add a new app

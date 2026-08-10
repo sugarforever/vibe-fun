@@ -52,8 +52,8 @@ import { appMyGame } from "./game-<id>";
 export const APPS: AppCatalogEntry[] = [app2048, appSudoku, appMyGame];
 ```
 
-Done. `tools/list`, `resources/list`, `list_apps`, the preview route, and the
-harness all pick it up automatically.
+Done. `tools/list`, `resources/list`, `list_apps`, the preview route, the play
+page, and the site's game list all pick it up automatically.
 
 ## The `window.mcpApp` API (available inside your app HTML)
 
@@ -81,8 +81,8 @@ harness all pick it up automatically.
 ```bash
 npm run typecheck && npm run build
 npm run dev
-# open http://localhost:3000/harness.html?app=<id>
+# open http://localhost:3000/play/<id>?debug=1
 ```
 
-The harness log shows the full JSON-RPC exchange, so you can confirm the
-handshake, tool-input, size-changed, and save/load all fire.
+The play page's developer log shows the full JSON-RPC exchange, so you can
+confirm the handshake, tool-input, size-changed, and save/load all fire.

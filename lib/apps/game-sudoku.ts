@@ -5,14 +5,15 @@ import { z } from "zod";
 const CSS = `
   .sudoku-wrap { position: relative; width: min(94vw, 460px); }
   .board {
-    display: grid; grid-template-columns: repeat(9, 1fr); aspect-ratio: 1 / 1;
-    border: 3px solid #33302b; border-radius: 6px; overflow: hidden;
+    display: grid; grid-template-columns: repeat(9, 1fr); grid-template-rows: repeat(9, 1fr);
+    aspect-ratio: 1 / 1; border: 3px solid #33302b; border-radius: 6px; overflow: hidden;
     background: #fff; user-select: none; touch-action: manipulation;
   }
   .cell {
     display: flex; align-items: center; justify-content: center;
     border-right: 1px solid #d5cfc4; border-bottom: 1px solid #d5cfc4;
     font-weight: 700; font-size: clamp(16px, 5.6vw, 27px); color: #3366cc; cursor: pointer;
+    min-width: 0; min-height: 0;
   }
   .cell.given { color: #33302b; cursor: default; }
   .cell.box-right { border-right: 2px solid #33302b; }
