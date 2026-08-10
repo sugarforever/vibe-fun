@@ -267,7 +267,7 @@ export default function Home() {
             ))}
 
             <article className="card game-card" style={{ borderStyle: "dashed", opacity: 0.9 }}>
-              <div className="game-thumb" style={{ background: "radial-gradient(120% 120% at 50% 0%, #14161f, #0e1017)" }}>
+              <div className="game-thumb">
                 <div style={{ textAlign: "center", color: "var(--text-dim)" }}>
                   <Bolt style={{ width: 30, height: 30, margin: "0 auto 10px" }} />
                   <div style={{ fontFamily: "var(--font-head)", fontWeight: 600 }}>More coming</div>

@@ -1,21 +1,22 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Space_Grotesk, DM_Sans } from "next/font/google";
+import { Gelasio, Ubuntu_Mono } from "next/font/google";
 import { SITE } from "@/lib/site";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
-const heading = Space_Grotesk({
+const serif = Gelasio({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-heading",
+  style: ["normal", "italic"],
+  variable: "--font-serif",
   display: "swap",
 });
-const dmSans = DM_Sans({
+const mono = Ubuntu_Mono({
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  variable: "--font-dmsans",
+  weight: ["400", "700"],
+  variable: "--font-udmono",
   display: "swap",
 });
 
@@ -73,8 +74,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0d12",
-  colorScheme: "dark",
+  themeColor: "#ffffff",
+  colorScheme: "light",
 };
 
 const jsonLd = {
@@ -111,7 +112,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${heading.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${serif.variable} ${mono.variable}`}>
       <body>
         <Nav />
         {children}
