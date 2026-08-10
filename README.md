@@ -39,82 +39,35 @@ the in-page “Developer log” toggle) to watch the full protocol live.
 
 ## How to use
 
-Whether the games actually *render and play* depends on the host. Rendering the
-MCP Apps UI (a sandboxed HTML iframe over the postMessage/JSON-RPC bridge) is the
-**host's** job — this server just ships spec-correct apps. State of the desktop
-hosts today (verify against your installed version — this is moving fast):
+Point any MCP host at the endpoint:
 
-| Host | Connect | Renders & plays the games? |
+```
+https://vibe-fun-gray.vercel.app/api/mcp
+```
+
+No account, no API key — pick **No authentication** wherever asked. Whether the
+games actually *render and play* depends on the host (rendering the MCP Apps UI is
+the host's job); calling the tools works much more widely.
+
+| Host | How to connect | Plays the games? |
 | --- | --- | --- |
-| **ChatGPT** (desktop/web, Apps SDK) | Developer mode → remote MCP URL | ✅ Yes — interactive iframe |
-| **Claude Desktop** | config file (stdio) or Connectors (remote) | ⚠️ Not yet — tools work, UI falls back to text |
-| **Codex** (CLI / IDE agent) | `config.toml` | ❌ No — tool-caller only, no app rendering |
+| **ChatGPT** — web / Windows desktop | Developer mode → remote URL | ✅ Yes — interactive board |
+| **ChatGPT** — macOS desktop app | *not supported* → use chatgpt.com | ❌ Dev mode not exposed on Mac |
+| **Claude Desktop** | Custom connector (remote) or config (stdio) | ⚠️ Connects & calls tools; UI not rendered yet |
+| **Codex** — CLI / IDE / desktop | `config.toml` or `codex mcp add` | ❌ Tool-caller only |
+| **Any browser** | nothing to install | ✅ Yes — `/play/2048`, `/play/sudoku` |
 
-This server emits the standard SEP-1865 contract (`text/html;profile=mcp-app` +
-`_meta.ui.resourceUri`) and also sets the `openai/outputTemplate` alias, so it
-renders **as-is** in ChatGPT — no OpenAI-specific build needed.
+**→ Full step-by-step for each client (with exact click-paths, config files, and
+troubleshooting): [`docs/install.md`](docs/install.md).**
 
-> Want a guaranteed-playable target right now, on any machine? Use the built-in
-> **play page** (bottom of this section) — a reference host that renders and
-> plays the apps locally.
+Quick reference:
 
-### ChatGPT — renders the apps
-
-Requirements: a **paid** ChatGPT plan (Plus/Pro/Business/Enterprise/Edu) and a
-**public HTTPS** MCP URL (deploy to Vercel, or tunnel localhost with ngrok —
-ChatGPT connects from OpenAI's servers, not your machine).
-
-1. **Settings → Connectors → Advanced → Developer mode** → turn it on.
-2. In **Connectors**, click **+** → create a developer-mode app for a **remote
-   MCP server** → paste your URL:
-   ```
-   https://vibe-fun.vercel.app/api/mcp
-   ```
-   Transport: **Streaming HTTP**. Auth: **No authentication**.
-3. The app appears in the composer's **Developer mode** tool. Ask, e.g.
-   *"open 2048"* or *"start a hard sudoku"* — the board renders inline and is
-   playable, and progress persists via the host bridge.
-
-### Claude Desktop — connects today, UI rendering pending
-
-Claude Desktop can list and call the tools, but **does not yet render** MCP Apps
-interactive UI (it currently shows the text fallback — tracked upstream in
-`modelcontextprotocol/ext-apps`). Still useful for exercising the tools; not yet
-for playing.
-
-**Local (stdio)** — edit `claude_desktop_config.json`, then restart the app:
-
-- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- Windows: `%APPDATA%\Claude\claude_desktop_config.json`
-
-```json
-{
-  "mcpServers": {
-    "vibe-fun": {
-      "command": "/absolute/path/to/npx",
-      "args": ["tsx", "/absolute/path/to/vibe-fun/bin/stdio.ts"]
-    }
-  }
-}
-```
-
-Use **absolute paths** — Claude Desktop launches with a minimal `PATH`, so bare
-`npx`/`node` often fail (`which npx` to find it). Run `npm install` in the repo
-first.
-
-**Remote (Streamable HTTP)** — not via the config file. Add it in **Settings →
-Connectors → Add custom connector** and paste `https://vibe-fun.vercel.app/api/mcp`.
-
-### Codex — tool-caller, no rendering
-
-Codex (CLI and IDE agent) consumes MCP servers as **tools only** — it has no app
-iframe, so the games aren't playable there. If you just want it to see/call the
-tools, add to `~/.codex/config.toml`:
-
-```toml
-[mcp_servers.vibe-fun]
-url = "https://vibe-fun.vercel.app/api/mcp"
-```
+- **ChatGPT** (plays it): chatgpt.com → Settings → **Apps & Connectors → Advanced →
+  Developer mode** on → **Create** a connector with the URL above and **No
+  authentication** → enable it per chat → *"open 2048"*.
+- **Claude Desktop**: Settings → **Connectors → Add → Add custom connector** → paste
+  the URL. (Or stdio via `claude_desktop_config.json` — see the guide.)
+- **Codex**: `codex mcp add vibe-fun --url https://vibe-fun-gray.vercel.app/api/mcp`
 
 ### Play it now (no host needed)
 
@@ -177,6 +130,8 @@ self-contained HTML document and add one catalog entry. Nothing else changes.
 
 ## Docs
 
+- [`docs/install.md`](docs/install.md) — detailed per-client setup (ChatGPT, Claude
+  Desktop, Codex) with exact click-paths, config files, and troubleshooting.
 - [`docs/protocol.md`](docs/protocol.md) — the MCP Apps wire contract this server
   implements, plus the app-layer persistence convention.
 - [`docs/adding-an-app.md`](docs/adding-an-app.md) — the single-point onboarding flow.
