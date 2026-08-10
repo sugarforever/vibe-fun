@@ -114,9 +114,10 @@ export const BRIDGE_JS = `
 /** Base CSS shared by every app (theme tokens, resets, fonts). */
 export const BASE_CSS = `
   :root {
-    color-scheme: light dark;
-    --bg: #faf8ef; --fg: #776e65; --muted: #bbada0;
-    --accent: #8f7a66; --accent-fg: #f9f6f2; --panel: #eee4da;
+    color-scheme: light;
+    --bg: #fbfbf9; --fg: #1c293c; --ink: #1c293c; --muted: #55617a;
+    --primary: #fdc800; --violet: #432dd7; --panel: #ffffff;
+    --sh: 4px 4px 0 var(--ink); --sh-sm: 3px 3px 0 var(--ink);
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; height: 100%; }
@@ -128,20 +129,22 @@ export const BASE_CSS = `
     padding: 16px; gap: 14px; min-height: 100%;
   }
   button {
-    font: inherit; cursor: pointer; border: 0; border-radius: 8px;
-    background: var(--accent); color: var(--accent-fg);
-    padding: 8px 14px; font-weight: 700;
+    font: inherit; cursor: pointer; border: 2px solid var(--ink); border-radius: 8px;
+    background: var(--primary); color: var(--ink);
+    padding: 9px 16px; font-weight: 800; box-shadow: var(--sh-sm);
+    transition: transform .1s ease, box-shadow .1s ease;
   }
-  button:active { transform: translateY(1px); }
-  button:focus-visible { outline: 3px solid #4c7dff; outline-offset: 2px; }
+  button:hover { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--ink); }
+  button:active { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--ink); }
+  button:focus-visible { outline: 3px solid var(--violet); outline-offset: 2px; }
   .header { width: 100%; max-width: 520px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .title { font-size: 40px; font-weight: 800; color: var(--fg); letter-spacing: -1px; }
-  .scores { display: flex; gap: 8px; }
-  .score-box { background: var(--muted); color: #fff; border-radius: 8px; padding: 6px 12px; text-align: center; min-width: 64px; }
-  .score-box .label { font-size: 11px; text-transform: uppercase; letter-spacing: .5px; opacity: .85; }
-  .score-box .val { font-size: 20px; font-weight: 800; }
+  .title { font-size: 40px; font-weight: 900; color: var(--ink); letter-spacing: -1.5px; }
+  .scores { display: flex; gap: 10px; }
+  .score-box { background: var(--ink); color: #fff; border: 2px solid var(--ink); border-radius: 8px; padding: 6px 12px; text-align: center; min-width: 66px; box-shadow: var(--sh-sm); }
+  .score-box .label { font-size: 11px; text-transform: uppercase; letter-spacing: .6px; font-weight: 700; opacity: .75; }
+  .score-box .val { font-size: 20px; font-weight: 900; }
   .toolbar { width: 100%; max-width: 520px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-  .hint { font-size: 13px; opacity: .8; }
+  .hint { font-size: 13px; font-weight: 600; color: var(--muted); }
 `;
 
 /** Compose a full, self-contained HTML document for an app. */

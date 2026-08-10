@@ -5,37 +5,38 @@ const CSS = `
   .board-wrap { position: relative; width: min(92vw, 480px); }
   .grid {
     display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr);
-    gap: 10px; background: var(--muted); border-radius: 10px; padding: 10px; aspect-ratio: 1 / 1;
+    gap: 7px; background: var(--ink); border: 3px solid var(--ink); border-radius: 12px;
+    padding: 7px; aspect-ratio: 1 / 1; box-shadow: 6px 6px 0 var(--ink);
     touch-action: none; user-select: none;
   }
   .tile {
     display: flex; align-items: center; justify-content: center;
-    border-radius: 6px; background: var(--panel); color: var(--fg);
-    font-weight: 800; line-height: 1; transition: transform .08s ease;
+    border-radius: 5px; background: #f2ede4; color: var(--ink);
+    font-weight: 900; line-height: 1; transition: transform .08s ease;
     min-width: 0; min-height: 0; overflow: hidden;
   }
   .tile.pop { animation: pop .16s ease; }
   @keyframes pop { 0% { transform: scale(.7); } 60% { transform: scale(1.08); } 100% { transform: scale(1); } }
-  .tile[data-val="0"] { color: transparent; }
-  .tile[data-val="2"] { background: #eee4da; }
-  .tile[data-val="4"] { background: #ede0c8; }
-  .tile[data-val="8"] { background: #f2b179; color: #f9f6f2; }
-  .tile[data-val="16"] { background: #f59563; color: #f9f6f2; }
-  .tile[data-val="32"] { background: #f67c5f; color: #f9f6f2; }
-  .tile[data-val="64"] { background: #f65e3b; color: #f9f6f2; }
-  .tile[data-val="128"] { background: #edcf72; color: #f9f6f2; }
-  .tile[data-val="256"] { background: #edcc61; color: #f9f6f2; }
-  .tile[data-val="512"] { background: #edc850; color: #f9f6f2; }
-  .tile[data-val="1024"] { background: #edc53f; color: #f9f6f2; }
-  .tile[data-val="2048"] { background: #edc22e; color: #f9f6f2; }
-  .tile[data-big="1"] { background: #3c3a32; color: #f9f6f2; }
+  .tile[data-val="0"] { color: transparent; background: #eeeae1; }
+  .tile[data-val="2"] { background: #ffffff; }
+  .tile[data-val="4"] { background: #fff3cf; }
+  .tile[data-val="8"] { background: #ffd54a; }
+  .tile[data-val="16"] { background: #ffb020; }
+  .tile[data-val="32"] { background: #ff8f45; }
+  .tile[data-val="64"] { background: #ff6b45; color: #fff; }
+  .tile[data-val="128"] { background: #fdc800; }
+  .tile[data-val="256"] { background: #ff5c8a; color: #fff; }
+  .tile[data-val="512"] { background: #b892ff; color: #1c293c; }
+  .tile[data-val="1024"] { background: #7c5cff; color: #fff; }
+  .tile[data-val="2048"] { background: #432dd7; color: #fff; }
+  .tile[data-big="1"] { background: #1c293c; color: #fdc800; }
   .overlay {
-    position: absolute; inset: 0; border-radius: 10px;
-    background: rgba(238, 228, 218, .78); backdrop-filter: blur(1px);
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+    position: absolute; inset: 0; border-radius: 12px;
+    background: rgba(251, 251, 249, .9);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
   }
   .overlay[hidden] { display: none; }
-  .overlay-msg { font-size: 30px; font-weight: 800; color: var(--fg); }
+  .overlay-msg { font-size: 32px; font-weight: 900; color: var(--ink); letter-spacing: -1px; }
   .overlay-actions { display: flex; gap: 10px; }
 `;
 
