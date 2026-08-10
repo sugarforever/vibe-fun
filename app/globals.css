@@ -216,6 +216,44 @@ p { margin: 0; }
 .host-status.no { color: var(--text-dim); }
 .host-card p { color: var(--text-muted); font-size: 15px; }
 
+/* ---------- comparison ---------- */
+.compare-card { position: relative; display: flex; flex-direction: column; gap: 12px; }
+.compare-card h3 { font-size: 19px; }
+.compare-card > p { color: var(--text-muted); font-size: 15px; }
+.compare-card.featured {
+  border-color: transparent;
+  background:
+    linear-gradient(var(--bg-card), var(--bg-card-2)) padding-box,
+    var(--grad) border-box;
+  box-shadow: var(--shadow-glow);
+}
+.compare-tag {
+  position: absolute; top: -12px; left: 24px;
+  font-family: var(--font-head); font-weight: 700; font-size: 12px; letter-spacing: 0.04em;
+  padding: 5px 12px; border-radius: 999px; background: var(--grad); color: #fff;
+}
+.compare-list { list-style: none; padding: 0; margin: 4px 0 0; display: grid; gap: 9px; }
+.compare-list li { display: flex; align-items: center; gap: 9px; font-size: 14.5px; color: var(--text-muted); }
+.compare-list li::before { content: ""; width: 18px; height: 18px; border-radius: 999px; flex: none; background-position: center; background-repeat: no-repeat; }
+.compare-list li.yes { color: var(--text); }
+.compare-list li.yes::before { background: rgba(74, 222, 128, 0.16); box-shadow: inset 0 0 0 1px rgba(74,222,128,0.5); }
+.compare-list li.no::before { background: rgba(255, 255, 255, 0.04); box-shadow: inset 0 0 0 1px var(--border-strong); }
+.compare-list li.yes::after { content: "✓"; position: absolute; margin-left: 3px; color: #4ade80; font-size: 12px; font-weight: 800; }
+.compare-list li.no::after { content: "×"; position: absolute; margin-left: 4px; color: var(--text-dim); font-size: 13px; }
+.compare-list li { position: relative; }
+
+/* ---------- FAQ ---------- */
+.faq-item { border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 12px; background: var(--bg-card); overflow: hidden; }
+.faq-item summary {
+  list-style: none; cursor: pointer; padding: 18px 20px; font-family: var(--font-head); font-weight: 600; font-size: 17px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; transition: color .16s ease;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover { color: var(--brand-2); }
+.faq-chevron { font-size: 22px; color: var(--text-dim); transition: transform .2s ease; flex: none; }
+.faq-item[open] .faq-chevron { transform: rotate(45deg); color: var(--brand-2); }
+.faq-item > p { padding: 0 20px 20px; color: var(--text-muted); font-size: 15.5px; margin: 0; max-width: 68ch; }
+
 /* ---------- CTA band ---------- */
 .cta-band {
   border-radius: var(--radius-lg); padding: 56px 40px; text-align: center;

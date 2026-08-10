@@ -20,6 +20,33 @@ export const dynamic = "force-static";
 const HERO_TILES = [0, 2, 4, 0, 4, 8, 16, 2, 0, 32, 64, 4, 128, 8, 0, 2];
 const SUDOKU_MINI = "53__7____6__195____98____6_8___6___34".padEnd(81, "_");
 
+const FAQS: { q: string; a: string }[] = [
+  {
+    q: "Can I play games inside ChatGPT?",
+    a: "Yes. Turn on Developer mode in ChatGPT, add the vibe-fun MCP endpoint as a connector, and the games render as interactive apps right in the chat — no extension or download needed.",
+  },
+  {
+    q: "What is a vibe-fun game, technically?",
+    a: "Each game is a single, self-contained HTML app served over the Model Context Protocol using the MCP Apps extension (SEP-1865). Any MCP host lists it as a tool and renders it in a sandboxed iframe.",
+  },
+  {
+    q: "Do I need an account or an install?",
+    a: "No. Play instantly in your browser, or connect the endpoint to your assistant. There are no accounts, downloads, or plugins, and your game progress is saved by the host, not by us.",
+  },
+  {
+    q: "Which AI assistants are supported?",
+    a: "ChatGPT renders and plays the games today. Claude Desktop can connect and call them, with interactive rendering rolling out as MCP Apps support ships. Any MCP client can list and call the games as tools.",
+  },
+  {
+    q: "Is it free and open source?",
+    a: "Yes. vibe-fun is free to play and open source under the MIT license. You can self-host it and add your own games in a single file.",
+  },
+  {
+    q: "How do new games reach players?",
+    a: "Games live on the server, not in the client. Add one to the catalog and every connected host picks it up automatically — players never update anything.",
+  },
+];
+
 function GameThumb({ id }: { id: string }) {
   if (id === "2048") {
     return (
@@ -52,15 +79,15 @@ export default function Home() {
         <div className="container hero-grid">
           <div>
             <span className="eyebrow">
-              <Sparkle style={{ width: 15, height: 15 }} /> MCP Apps · open protocol
+              <Sparkle style={{ width: 15, height: 15 }} /> The game catalog for AI assistants
             </span>
             <h1 style={{ marginTop: 16 }}>
               Games for <span className="gradient-text">AI</span>, on tap.
             </h1>
             <p className="lead">
-              vibe-fun is a game server for AI assistants. Connect it to your MCP
-              host once, and a growing library of polished, playable games shows
-              up right inside the chat — no installs, no updates.
+              vibe-fun is a game server for AI assistants. Connect it to ChatGPT
+              or Claude once, and a growing catalog of polished, playable games
+              shows up right inside the chat — no installs, no updates, ever.
             </p>
             <div className="hero-cta">
               <Link className="btn btn-primary" href="/play/2048">
@@ -97,6 +124,56 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- WHY DIFFERENT ---------- */}
+      <section className="section" id="why" style={{ paddingTop: 40 }}>
+        <div className="container">
+          <div className="center" style={{ maxWidth: 660, margin: "0 auto 40px" }}>
+            <span className="eyebrow">A new kind of game portal</span>
+            <h2 style={{ fontSize: "clamp(28px,4vw,42px)", marginTop: 14 }}>
+              Not a game site. Not a one-off chat app.
+            </h2>
+            <p className="lead" style={{ marginTop: 14 }}>
+              Game portals are invisible to your assistant. Single AI game apps
+              are locked to one host, one game. vibe-fun is the layer in between —
+              a shared catalog that travels with you.
+            </p>
+          </div>
+
+          <div className="grid-3 compare">
+            <article className="card compare-card">
+              <h3>Classic game portals</h3>
+              <p>Great games — stuck in a browser tab, invisible to the assistant you actually talk to.</p>
+              <ul className="compare-list">
+                <li className="no">No AI host integration</li>
+                <li className="no">You go to them</li>
+                <li className="no">No shared catalog</li>
+              </ul>
+            </article>
+
+            <article className="card compare-card featured">
+              <div className="compare-tag">vibe-fun</div>
+              <h3>One catalog, every host</h3>
+              <p>Connect once. Every game shows up in your assistant and in the browser — and new ones arrive on their own.</p>
+              <ul className="compare-list">
+                <li className="yes">Plays inside ChatGPT &amp; the browser</li>
+                <li className="yes">Add a game → live on every host</li>
+                <li className="yes">Open protocol, zero lock-in</li>
+              </ul>
+            </article>
+
+            <article className="card compare-card">
+              <h3>Single chat-app games</h3>
+              <p>One game, one host, hard-coded. Shipping the next one means building and submitting a whole new app.</p>
+              <ul className="compare-list">
+                <li className="no">One game per app</li>
+                <li className="no">Per-host rebuilds</li>
+                <li className="no">No catalog to grow</li>
+              </ul>
+            </article>
           </div>
         </div>
       </section>
@@ -362,6 +439,31 @@ export const APPS = [
         </div>
       </section>
 
+      {/* ---------- FAQ ---------- */}
+      <section className="section" id="faq">
+        <div className="container">
+          <div className="center" style={{ maxWidth: 640, margin: "0 auto 40px" }}>
+            <span className="eyebrow">FAQ</span>
+            <h2 style={{ fontSize: "clamp(26px,3.6vw,38px)", marginTop: 12 }}>
+              Questions, answered.
+            </h2>
+          </div>
+          <div className="faq" style={{ maxWidth: 780, margin: "0 auto" }}>
+            {FAQS.map((f) => (
+              <details key={f.q} className="faq-item">
+                <summary>
+                  {f.q}
+                  <span className="faq-chevron" aria-hidden>
+                    +
+                  </span>
+                </summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ---------- CTA ---------- */}
       <section className="section-sm">
         <div className="container">
@@ -383,6 +485,21 @@ export const APPS = [
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: FAQS.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          }),
+        }}
+      />
     </main>
   );
 }

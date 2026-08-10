@@ -29,9 +29,11 @@ export default function Footer() {
 
           <div className="footer-col">
             <h4>Product</h4>
+            <Link href="/#why">Why vibe-fun</Link>
             <Link href="/#how">How it works</Link>
             <Link href="/#connect">Connect a host</Link>
             <Link href="/#developers">For developers</Link>
+            <Link href="/#faq">FAQ</Link>
           </div>
 
           <div className="footer-col">
