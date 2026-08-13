@@ -9,7 +9,8 @@ import type { ZodType } from "zod";
  *  - UI resources are declared under the `ui://` URI scheme.
  *  - The HTML UI MIME type is `text/html;profile=mcp-app`.
  *  - A tool is linked to its UI resource via `_meta.ui.resourceUri` on the
- *    tool definition (and, for good measure, on the tool result too).
+ *    tool definition. The legacy `_meta["ui/resourceUri"]` alias is emitted
+ *    alongside it for compatibility with hosts that have not migrated yet.
  *  - Hosts advertise support with the `io.modelcontextprotocol/ui` extension.
  */
 

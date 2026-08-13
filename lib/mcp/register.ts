@@ -70,6 +70,9 @@ export function registerApps(server: McpServer): void {
             visibility: ["model", "app"],
             preferredSize: app.suggestedSize,
           },
+          // Kept alongside the current nested form for hosts that still read
+          // the pre-GA MCP Apps metadata key (including some Claude builds).
+          "ui/resourceUri": app.uiResourceUri,
           // ChatGPT / Apps SDK compatibility alias for the same UI link.
           // Standard hosts read _meta.ui.resourceUri; this is harmless extra.
           "openai/outputTemplate": app.uiResourceUri,
@@ -77,7 +80,10 @@ export function registerApps(server: McpServer): void {
       },
       async () => ({
         content: [{ type: "text" as const, text: fallbackText(app) }],
-        _meta: { ui: { resourceUri: app.uiResourceUri } },
+        _meta: {
+          ui: { resourceUri: app.uiResourceUri },
+          "ui/resourceUri": app.uiResourceUri,
+        },
       }),
     );
   }

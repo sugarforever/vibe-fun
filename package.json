@@ -12,6 +12,7 @@
     "build": "next build",
     "start": "next start",
     "stdio": "tsx bin/stdio.ts",
+    "test": "tsx --test tests/**/*.test.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
