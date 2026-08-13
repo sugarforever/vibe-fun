@@ -43,6 +43,7 @@ export function registerApps(server: McpServer): void {
         description: app.description,
         mimeType: MCP_APP_MIME,
         _meta: {
+          ui: { prefersBorder: true },
           "app/version": app.version,
           "app/suggestedSize": app.suggestedSize,
         },
@@ -53,6 +54,7 @@ export function registerApps(server: McpServer): void {
             uri: uri.href,
             mimeType: MCP_APP_MIME,
             text: app.html,
+            _meta: { ui: { prefersBorder: true } },
           },
         ],
       }),
@@ -70,11 +72,10 @@ export function registerApps(server: McpServer): void {
             visibility: ["model", "app"],
             preferredSize: app.suggestedSize,
           },
-          // Kept alongside the current nested form for hosts that still read
-          // the pre-GA MCP Apps metadata key (including some Claude builds).
+          // Mirrors registerAppTool's compatibility normalization for hosts
+          // that still read the pre-GA flat metadata key.
           "ui/resourceUri": app.uiResourceUri,
           // ChatGPT / Apps SDK compatibility alias for the same UI link.
-          // Standard hosts read _meta.ui.resourceUri; this is harmless extra.
           "openai/outputTemplate": app.uiResourceUri,
         },
       },

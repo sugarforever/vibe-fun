@@ -44,7 +44,7 @@ export const BRIDGE_JS = `
       post({ jsonrpc: '2.0', id: id, method: method, params: params || {} });
       setTimeout(function () {
         if (pending[id]) { delete pending[id]; reject(new Error('timeout')); }
-      }, timeoutMs || 800);
+      }, timeoutMs || 10000);
     });
   }
   function notify(method, params) {
@@ -80,7 +80,11 @@ export const BRIDGE_JS = `
     onToolInput: function (cb) { toolInputHandlers.push(cb); },
     ready: function () {
       if (!inIframe) { api.inHost = false; return Promise.resolve({ host: null }); }
-      return request('ui/initialize', { clientInfo: { name: APP_ID, version: '1' } })
+      return request('ui/initialize', {
+        appInfo: { name: APP_ID, version: '1.0.0' },
+        appCapabilities: {},
+        protocolVersion: '2026-01-26'
+      })
         .then(function (res) {
           api.inHost = true;
           notify('ui/notifications/initialized', {});
