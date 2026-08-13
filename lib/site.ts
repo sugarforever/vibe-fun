@@ -4,7 +4,7 @@ export const SITE = {
   /** Production origin. Override with NEXT_PUBLIC_SITE_URL if the domain changes. */
   url:
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-    "https://vibe-fun-gray.vercel.app",
+    "https://vibefun.app",
   tagline: "Games for AI, on tap.",
   description:
     "vibe-fun is an MCP Apps server that delivers ready-to-play HTML games to any AI host. Connect once and every game shows up — no client updates, ever.",
