@@ -7,7 +7,7 @@ games with **zero client changes** — it just re-reads the catalog.
 
 - Protocol: [MCP Apps / SEP-1865](https://modelcontextprotocol.io/seps/1865-mcp-apps-interactive-user-interfaces-for-mcp)
 - Built on MCP SDK v2 (`@modelcontextprotocol/server`) + [`mcp-handler`](https://www.npmjs.com/package/mcp-handler)
-- First two apps: **2048** and **Sudoku**
+- Included games: **2048, Sudoku, and Minesweeper**
 
 ## What it exposes
 
@@ -55,7 +55,7 @@ the host's job); calling the tools works much more widely.
 | **ChatGPT** — macOS desktop app | *not supported* → use chatgpt.com | ❌ Dev mode not exposed on Mac |
 | **Claude Desktop** | Custom connector (remote) or config (stdio) | ⚠️ Connects & calls tools; UI not rendered yet |
 | **Codex** — CLI / IDE / desktop | `config.toml` or `codex mcp add` | ❌ Tool-caller only |
-| **Any browser** | nothing to install | ✅ Yes — `/play/2048`, `/play/sudoku` |
+| **Any browser** | nothing to install | ✅ Yes — `/play/2048`, `/play/sudoku`, `/play/minesweeper` |
 
 **→ Full step-by-step for each client (with exact click-paths, config files, and
 troubleshooting): [`docs/install.md`](docs/install.md).**
@@ -75,6 +75,7 @@ Quick reference:
 npm run dev
 # open http://localhost:3000/play/2048
 #      http://localhost:3000/play/sudoku
+#      http://localhost:3000/play/minesweeper
 ```
 
 The `/play` page is a reference MCP Apps **host**: it renders the app in a
@@ -117,6 +118,7 @@ lib/
     bridge.ts            # shared postMessage/JSON-RPC bridge + HTML builder
     game-2048.ts         # 2048 app (HTML + catalog entry)
     game-sudoku.ts       # Sudoku app (HTML + catalog entry)
+    game-minesweeper.ts  # Minesweeper app (HTML + catalog entry)
     index.ts             # the catalog (APPS)
   mcp/register.ts        # registerApps(server) — shared by both transports
   site.ts                # site config used by pages + SEO

@@ -1,4 +1,5 @@
 import { app2048 } from "./game-2048";
+import { appMinesweeper } from "./game-minesweeper";
 import { appSudoku } from "./game-sudoku";
 import type { AppCatalogEntry, AppCatalogRow } from "./types";
 
@@ -6,7 +7,7 @@ import type { AppCatalogEntry, AppCatalogRow } from "./types";
  * The app catalog. To onboard a new app, build its self-contained HTML in a
  * sibling module and add its entry to this array — nothing else changes.
  */
-export const APPS: AppCatalogEntry[] = [app2048, appSudoku];
+export const APPS: AppCatalogEntry[] = [app2048, appSudoku, appMinesweeper];
 
 export function getApp(id: string): AppCatalogEntry | undefined {
   return APPS.find((a) => a.id === id);
