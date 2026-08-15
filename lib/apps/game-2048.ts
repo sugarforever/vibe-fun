@@ -300,6 +300,7 @@ export const app2048: AppCatalogEntry = {
     ],
   },
   version: "1.0.0",
+  updatedAt: "2026-08-15",
   toolName: "play_2048",
   uiResourceUri: "ui://apps/2048",
   suggestedSize: { width: 520, height: 640 },

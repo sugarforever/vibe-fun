@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE.url}/`, changeFrequency: "weekly", priority: 1 },
     ...APPS.map((a) => ({
       url: `${SITE.url}/play/${a.id}`,
+      lastModified: new Date(`${a.updatedAt}T00:00:00Z`),
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),

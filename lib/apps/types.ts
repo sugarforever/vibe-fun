@@ -40,6 +40,8 @@ export interface AppCatalogEntry {
   };
   /** Semantic version of this app's HTML. Bump when the HTML changes. */
   version: string;
+  /** Date of the most recent user-visible game change, in YYYY-MM-DD format. */
+  updatedAt: string;
   /** The tool name a host calls to open this app, e.g. "play_2048". */
   toolName: string;
   /** The ui:// resource URI, e.g. "ui://apps/2048". */

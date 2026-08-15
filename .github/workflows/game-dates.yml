@@ -1,0 +1,35 @@
+name: Game metadata dates
+
+on:
+  pull_request:
+    paths:
+      - "lib/apps/game-*.ts"
+      - "scripts/check-game-updated-at.ts"
+      - ".github/workflows/game-dates.yml"
+  push:
+    branches: [main]
+    paths:
+      - "lib/apps/game-*.ts"
+      - "scripts/check-game-updated-at.ts"
+      - ".github/workflows/game-dates.yml"
+
+jobs:
+  verify-game-dates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Require updatedAt for changed games
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [[ "$BASE_SHA" =~ ^0+$ ]]; then
+            BASE_SHA="$(git rev-list --max-parents=0 HEAD)"
+          fi
+          npm run check:game-dates -- --base "$BASE_SHA"

@@ -7,12 +7,32 @@ import * as catalog from "../lib/apps/index";
 import { SITE } from "../lib/site";
 import Footer from "../components/Footer";
 
-test("sitemap does not claim every page changed at build time", () => {
+test("static sitemap entries do not claim they changed at build time", () => {
   const entries = sitemap();
   assert.ok(entries.length > 0);
-  for (const entry of entries) {
+  for (const entry of entries.filter((item) => !item.url.includes("/play/"))) {
     assert.equal(entry.lastModified, undefined);
   }
+});
+
+test("game sitemap entries use explicit per-game modification dates", () => {
+  const expectedDates = new Map([
+    ["2048", "2026-08-15"],
+    ["sudoku", "2026-08-15"],
+    ["minesweeper", "2026-08-15"],
+  ]);
+  const entries = sitemap();
+
+  for (const app of catalog.APPS) {
+    const updatedAt = (app as unknown as { updatedAt?: string }).updatedAt;
+    assert.equal(updatedAt, expectedDates.get(app.id));
+    const entry = entries.find((item) => item.url.endsWith(`/play/${app.id}`));
+    assert.ok(entry);
+    assert.equal(new Date(entry.lastModified!).toISOString(), `${updatedAt}T00:00:00.000Z`);
+  }
+
+  assert.equal(entries.find((item) => item.url === "https://vibefun.app/")?.lastModified, undefined);
+  assert.equal(entries.find((item) => item.url === "https://vibefun.app/about")?.lastModified, undefined);
 });
 
 test("every playable game has distinct indexable copy", () => {

@@ -13,6 +13,7 @@
     "start": "next start",
     "stdio": "tsx bin/stdio.ts",
     "test": "tsx --test tests/**/*.test.ts",
+    "check:game-dates": "tsx scripts/check-game-updated-at.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

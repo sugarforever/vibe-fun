@@ -417,6 +417,7 @@ export const appSudoku: AppCatalogEntry = {
     ],
   },
   version: "1.0.0",
+  updatedAt: "2026-08-15",
   toolName: "play_sudoku",
   uiResourceUri: "ui://apps/sudoku",
   suggestedSize: { width: 500, height: 760 },

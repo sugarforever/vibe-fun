@@ -664,6 +664,7 @@ export const appMinesweeper: AppCatalogEntry = {
     ],
   },
   version: "1.0.0",
+  updatedAt: "2026-08-15",
   toolName: "play_minesweeper",
   uiResourceUri: "ui://apps/minesweeper",
   suggestedSize: { width: 760, height: 720 },
