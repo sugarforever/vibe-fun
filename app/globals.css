@@ -173,7 +173,7 @@ p { margin: 0; }
 /* ---------- game cards ---------- */
 .game-card { display: flex; flex-direction: column; gap: 16px; overflow: hidden; padding: 0; }
 .game-thumb { aspect-ratio: 16 / 10; border-bottom: var(--bw) solid var(--ink); position: relative; display: grid; place-items: center; overflow: hidden; background: var(--bg-elev); }
-.game-thumb.g2048, .game-thumb.gsudoku { background: var(--bg-elev); }
+.game-thumb.g2048, .game-thumb.gsudoku, .game-thumb.gminesweeper { background: var(--bg-elev); }
 .game-body { padding: 0 22px 22px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
 .game-body h3 { font-size: 23px; }
 .game-meta { font-family: var(--font-mono); font-size: 12px; color: var(--text-dim); }
@@ -181,6 +181,10 @@ p { margin: 0; }
 
 .minisudoku { display: grid; grid-template-columns: repeat(9, 1fr); grid-template-rows: repeat(9, 1fr); width: 62%; aspect-ratio: 1; background: var(--ink); border: var(--bw) solid var(--ink); gap: 1px; border-radius: 4px; overflow: hidden; }
 .minisudoku span { background: #fff; display: grid; place-items: center; font-family: var(--font-head); font-weight: 800; font-size: 11px; color: var(--ink); }
+.minimines { display: grid; grid-template-columns: repeat(9, 1fr); grid-template-rows: repeat(6, 1fr); width: 72%; aspect-ratio: 3 / 2; padding: 5px; background: var(--ink); border: var(--bw) solid var(--ink); gap: 2px; border-radius: 7px; overflow: hidden; }
+.minimines span { display: grid; place-items: center; min-width: 0; min-height: 0; border-radius: 2px; background: #fff; color: #2957c8; font-family: var(--font-head); font-size: clamp(8px, 1.3vw, 12px); font-weight: 800; }
+.minimines .closed { background: #e8ebef; box-shadow: inset -1px -1px 0 #aeb7c4, inset 1px 1px 0 #fff; }
+.minimines .flag { background: #fff2b0; color: #b42318; }
 
 /* ---------- code / endpoint ---------- */
 .code {

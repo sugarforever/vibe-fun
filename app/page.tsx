@@ -19,6 +19,14 @@ export const dynamic = "force-static";
 
 const HERO_TILES = [0, 2, 4, 0, 4, 8, 16, 2, 0, 32, 64, 4, 128, 8, 0, 2];
 const SUDOKU_MINI = "53__7____6__195____98____6_8___6___34".padEnd(81, "_");
+const MINES_MINI = [
+  "", "", "1", "⚑", "1", "", "", "", "",
+  "1", "1", "2", "1", "1", "", "1", "1", "1",
+  "1", "⚑", "2", "1", "", "", "1", "⚑", "1",
+  "1", "2", "⚑", "1", "", "", "1", "1", "1",
+  "", "1", "1", "1", "", "", "", "", "",
+  "", "", "", "", "", "", "", "", "",
+];
 
 const FAQS: { q: string; a: string }[] = [
   {
@@ -55,6 +63,17 @@ function GameThumb({ id }: { id: string }) {
           <div key={i} className="t" data-v={v || undefined}>
             {v || ""}
           </div>
+        ))}
+      </div>
+    );
+  }
+  if (id === "minesweeper") {
+    return (
+      <div className="minimines" aria-hidden>
+        {MINES_MINI.map((value, i) => (
+          <span key={i} className={value === "⚑" ? "flag" : value ? "open" : "closed"}>
+            {value}
+          </span>
         ))}
       </div>
     );
@@ -243,7 +262,7 @@ export default function Home() {
           <div className="grid-3">
             {games.map((g) => (
               <article key={g.id} className="card card-hover game-card">
-                <div className={`game-thumb ${g.id === "2048" ? "g2048" : "gsudoku"}`}>
+                <div className={`game-thumb g${g.id}`}>
                   <GameThumb id={g.id} />
                 </div>
                 <div className="game-body">
