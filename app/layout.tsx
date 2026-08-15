@@ -114,6 +114,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${mono.variable}`}>
       <head>
+        <meta
+          name="msvalidate.01"
+          content="9F91E1EBEEA86E712FC9DCC3B7A7A053"
+        />
         <script
           defer
           src="https://vibeloft.ai/telemetry/v1.js"
