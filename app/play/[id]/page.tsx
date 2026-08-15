@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { APPS, getApp } from "@/lib/apps";
+import { APPS, buildGameJsonLd, getApp } from "@/lib/apps";
 import PlayClient from "@/components/PlayClient";
 
 export function generateStaticParams() {
@@ -15,8 +15,8 @@ export async function generateMetadata({
   const { id } = await params;
   const app = getApp(id);
   if (!app) return { title: "Play" };
-  const title = `Play ${app.name}`;
-  const description = `Play ${app.name} free in your browser — ${app.description} Delivered as an MCP App you can add to your AI assistant.`;
+  const title = app.seo.title;
+  const description = app.seo.description;
   return {
     title,
     description,
@@ -39,11 +39,18 @@ export default async function PlayPage({
   const { id } = await params;
   const app = getApp(id);
   if (!app) notFound();
+  const jsonLd = buildGameJsonLd(app);
 
   return (
-    <PlayClient
-      game={{ id: app.id, name: app.name, description: app.description }}
-      games={APPS.map((a) => ({ id: a.id, name: a.name }))}
-    />
+    <>
+      <PlayClient
+        game={{ id: app.id, name: app.name, description: app.description, seo: app.seo }}
+        games={APPS.map((a) => ({ id: a.id, name: a.name }))}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+    </>
   );
 }

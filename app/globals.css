@@ -268,6 +268,15 @@ p { margin: 0; }
 .logmsg.in { background: #eafaf0; }
 .logmsg.out { background: #eef0ff; }
 .logmsg.meta { background: var(--bg-elev); color: var(--text-muted); }
+.play-copy { max-width: 900px; margin: 56px auto 0; padding-top: 34px; border-top: var(--bw) solid var(--ink); }
+.play-copy > h2 { font-size: clamp(26px, 4vw, 36px); margin-bottom: 14px; }
+.play-copy > p { color: var(--text-muted); font-size: 16.5px; max-width: 72ch; }
+.play-copy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 26px; }
+.play-copy-grid article { padding: 22px; background: #fff; border: var(--bw) solid var(--ink); border-radius: var(--radius); box-shadow: var(--sh); }
+.play-copy-grid h3 { font-size: 20px; margin-bottom: 10px; }
+.play-copy-grid p { color: var(--text-muted); }
+.play-copy .play-copy-links { margin-top: 24px; }
+.play-copy a { color: var(--violet); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---------- prose / legal pages ---------- */
 .prose-page { max-width: 760px; margin: 0 auto; padding: 56px 24px 24px; }
@@ -290,6 +299,7 @@ p { margin: 0; }
   .hero .mock { max-width: 420px; margin: 0 auto; }
   .grid-3 { grid-template-columns: 1fr; }
   .grid-2 { grid-template-columns: 1fr; gap: 28px; }
+  .play-copy-grid { grid-template-columns: 1fr; }
   .play-stage.with-log { grid-template-columns: 1fr; }
   .nav-links { display: none; }
   .section { padding: 62px 0; }

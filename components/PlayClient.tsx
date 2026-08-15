@@ -17,7 +17,15 @@ export default function PlayClient({
   game,
   games,
 }: {
-  game: { id: string; name: string; description: string };
+  game: {
+    id: string;
+    name: string;
+    description: string;
+    seo: {
+      intro: string;
+      sections: Array<{ heading: string; body: string }>;
+    };
+  };
   games: GameRef[];
 }) {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
@@ -223,6 +231,23 @@ export default function PlayClient({
           Add it to your own assistant <ArrowRight style={{ width: 13, height: 13, display: "inline", verticalAlign: "-1px" }} />
         </Link>
       </p>
+
+      <section className="play-copy" aria-labelledby="about-this-game">
+        <h2 id="about-this-game">About {game.name}</h2>
+        <p>{game.seo.intro}</p>
+        <div className="play-copy-grid">
+          {game.seo.sections.map((section) => (
+            <article key={section.heading}>
+              <h3>{section.heading}</h3>
+              <p>{section.body}</p>
+            </article>
+          ))}
+        </div>
+        <p className="play-copy-links">
+          Explore <Link href="/#games">all games</Link> or{" "}
+          <Link href="/#connect">add vibe-fun to your AI assistant</Link>.
+        </p>
+      </section>
     </main>
   );
 }

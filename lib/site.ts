@@ -9,6 +9,9 @@ export const SITE = {
   description:
     "vibe-fun is an MCP Apps server that delivers ready-to-play HTML games to any AI host. Connect once and every game shows up — no client updates, ever.",
   githubUrl: "https://github.com/sugarforever/vibe-fun",
+  issuesUrl: "https://github.com/sugarforever/vibe-fun/issues",
+  securityUrl: "https://github.com/sugarforever/vibe-fun/security/advisories/new",
+  contactPath: "/contact",
   mcpPath: "/api/mcp",
   nav: [
     { label: "Games", href: "/#games" },

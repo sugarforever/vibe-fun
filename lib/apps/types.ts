@@ -31,6 +31,13 @@ export interface AppCatalogEntry {
   name: string;
   /** Short description surfaced in tools/list and resource metadata. */
   description: string;
+  /** Indexable, game-specific copy for the public play page. */
+  seo: {
+    title: string;
+    description: string;
+    intro: string;
+    sections: Array<{ heading: string; body: string }>;
+  };
   /** Semantic version of this app's HTML. Bump when the HTML changes. */
   version: string;
   /** The tool name a host calls to open this app, e.g. "play_2048". */

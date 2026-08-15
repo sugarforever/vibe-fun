@@ -282,6 +282,23 @@ export const app2048: AppCatalogEntry = {
   id: "2048",
   name: "2048",
   description: "Slide numbered tiles to combine them and reach the 2048 tile.",
+  seo: {
+    title: "Play 2048 Online",
+    description:
+      "Play 2048 online for free in your browser or AI assistant. Slide and merge numbered tiles, save progress locally, and work toward the 2048 tile.",
+    intro:
+      "Play 2048 online with a clean board that works with a keyboard, touch gestures, or an AI assistant. Each move slides every tile in one direction; matching values merge and add to your score. The goal is to build the 2048 tile without filling the four-by-four grid.",
+    sections: [
+      {
+        heading: "How to play 2048",
+        body: "Use the arrow keys or WASD on a keyboard, or swipe on a touch screen. Every valid move adds a new tile. Plan several moves ahead, keep your largest tile near a corner, and avoid scattering high-value tiles across the board. You can start a fresh game at any time from the controls above.",
+      },
+      {
+        heading: "Play in your browser or AI assistant",
+        body: "The game runs as a self-contained MCP App. Browser progress stays in local storage, while a compatible AI host can render the same interactive game inside a conversation. There is no account, download, or external game service, and the open-source implementation can be self-hosted.",
+      },
+    ],
+  },
   version: "1.0.0",
   toolName: "play_2048",
   uiResourceUri: "ui://apps/2048",

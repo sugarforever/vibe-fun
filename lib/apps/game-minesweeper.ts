@@ -646,6 +646,23 @@ export const appMinesweeper: AppCatalogEntry = {
   name: "Minesweeper",
   description:
     "Clear the field without triggering a mine — classic, custom, and daily boards.",
+  seo: {
+    title: "Play Minesweeper Online",
+    description:
+      "Play Minesweeper online for free with beginner, intermediate, expert, custom, and daily boards. Flag mines, clear safe cells, and save progress locally.",
+    intro:
+      "Play Minesweeper online with classic beginner, intermediate, and expert boards, or create a custom minefield. Reveal every safe square without opening a mine. Each number tells you how many mines touch that square, turning the board into a logic puzzle that rewards careful deduction instead of guessing.",
+    sections: [
+      {
+        heading: "How to play Minesweeper",
+        body: "Click or tap to reveal a square, then right-click, long-press, or use the keyboard to place a flag. Use numbered clues together: when a number already touches the correct number of flags, its other covered neighbors are safe. The first move is protected, and chord controls make larger boards quicker to clear.",
+      },
+      {
+        heading: "Classic, custom, and daily boards",
+        body: "Choose a standard difficulty, set your own width, height, and mine count, or play the shared daily challenge. The browser stores progress locally so you can continue without an account. The same self-contained MCP App can also run inside a compatible AI assistant while keeping the familiar Minesweeper rules and controls.",
+      },
+    ],
+  },
   version: "1.0.0",
   toolName: "play_minesweeper",
   uiResourceUri: "ui://apps/minesweeper",

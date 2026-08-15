@@ -399,6 +399,23 @@ export const appSudoku: AppCatalogEntry = {
   name: "Sudoku",
   description:
     "Fill the 9x9 grid so every row, column, and 3x3 box contains 1-9. Puzzles have a unique solution.",
+  seo: {
+    title: "Play Sudoku Online",
+    description:
+      "Play Sudoku online for free with easy, medium, and hard puzzles. Use keyboard or touch controls, check your work, and save progress in your browser or AI host.",
+    intro:
+      "Play Sudoku online with a fresh, uniquely solvable puzzle at your preferred difficulty. Fill the nine-by-nine grid so every row, column, and three-by-three box contains the digits one through nine exactly once. The board supports keyboard and touch input and keeps the puzzle focused and easy to read.",
+    sections: [
+      {
+        heading: "How to play Sudoku",
+        body: "Choose an empty cell and enter a number from one to nine. Use the existing clues to eliminate impossible values, then compare rows, columns, and boxes before committing an answer. The check control highlights mistakes when you want feedback, while the timer helps you track a relaxed solve or a faster personal challenge.",
+      },
+      {
+        heading: "Three difficulties, one portable puzzle",
+        body: "Easy, medium, and hard modes change how many clues appear while preserving a unique solution. Your current puzzle can be stored locally by the browser or a compatible AI assistant. Because Sudoku is delivered as a self-contained MCP App, it requires no account, installation, advertising tracker, or separate game client.",
+      },
+    ],
+  },
   version: "1.0.0",
   toolName: "play_sudoku",
   uiResourceUri: "ui://apps/sudoku",

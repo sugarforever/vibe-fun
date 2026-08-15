@@ -89,6 +89,12 @@ const jsonLd = {
       logo: `${SITE.url}/icon.svg`,
       description: SITE.description,
       sameAs: [SITE.githubUrl],
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "technical support",
+        url: `${SITE.url}${SITE.contactPath}`,
+        availableLanguage: "English",
+      },
     },
     {
       "@type": "WebSite",
