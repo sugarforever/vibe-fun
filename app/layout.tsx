@@ -113,6 +113,14 @@ const jsonLd = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${mono.variable}`}>
+      <head>
+        <script
+          defer
+          src="https://vibeloft.ai/telemetry/v1.js"
+          data-vl-product-id="82e25098-2d86-4381-9aff-839f8abad370"
+          data-vl-auth-key="vl_web.zlAqBwscSSXthxDIeyKLifSIiLehe1W6OltBEFu8bLY"
+        />
+      </head>
       <body>
         <Nav />
         {children}
