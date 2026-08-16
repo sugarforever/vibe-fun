@@ -257,41 +257,38 @@ export default function Home() {
       </section>
 
       {/* ---------- GAMES ---------- */}
-      <section className="section" id="games" style={{ paddingTop: 20 }}>
+      <section className="section games-section" id="games">
         <div className="container">
-          <div style={{ display: "flex", alignItems: "end", justifyContent: "space-between", gap: 20, marginBottom: 32, flexWrap: "wrap" }}>
+          <div className="game-library-head">
             <div>
               <span className="eyebrow">The library</span>
-              <h2 style={{ fontSize: "clamp(26px,3.6vw,38px)", marginTop: 12 }}>
+              <h2>
                 Four games. More on the way.
               </h2>
             </div>
-            <p className="lead" style={{ maxWidth: 340 }}>
+            <p>
               Hand-built, keyboard- and touch-friendly, and playable the moment
               you open them.
             </p>
           </div>
 
-          <div className="grid-3">
+          <div className="game-grid">
             {games.map((g) => (
-              <article key={g.id} className="card card-hover game-card">
+              <article key={g.id} className="card card-hover game-card game-card-compact">
                 <div className={`game-thumb g${g.id}`}>
                   <GameThumb id={g.id} />
                 </div>
                 <div className="game-body">
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
                     <h3>{g.name}</h3>
-                    <span className="badge dim" style={{ padding: "4px 10px", fontSize: 12 }}>
+                    <span className="game-version">
                       v{g.version}
                     </span>
                   </div>
-                  <p style={{ color: "var(--text-muted)", fontSize: 15 }}>{g.description}</p>
+                  <p className="game-description">{g.description}</p>
                   <div className="game-actions">
                     <Link className="btn btn-primary btn-sm" href={`/play/${g.id}`}>
                       <Play /> Play
-                    </Link>
-                    <Link className="btn btn-outline btn-sm" href="/#connect">
-                      Add to host
                     </Link>
                   </div>
                 </div>
@@ -307,7 +304,7 @@ export default function Home() {
               </div>
               <div className="game-body">
                 <h3 style={{ color: "var(--text-muted)" }}>Your game here</h3>
-                <p style={{ color: "var(--text-muted)", fontSize: 15 }}>
+                <p className="game-description">
                   Every new game ships to all connected hosts at once. Want to add
                   one? It takes a single file.
                 </p>

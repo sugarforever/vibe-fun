@@ -21,3 +21,11 @@ test("the Pacman catalog card renders a Pacman maze thumbnail", () => {
   const nearbyMarkup = html.slice(Math.max(0, cardStart - 5000), cardStart);
   assert.match(nearbyMarkup, /class="minipacman"/);
 });
+
+test("the growing game catalog uses a compact dedicated grid", () => {
+  const html = renderToStaticMarkup(createElement(Home));
+  assert.match(html, /class="game-library-head"/);
+  assert.match(html, /class="game-grid"/);
+  assert.match(html, /class="card card-hover game-card game-card-compact"/);
+  assert.match(html, /class="game-description"/);
+});
