@@ -2,7 +2,7 @@
   "name": "vibe-fun",
   "version": "0.1.0",
   "private": true,
-  "description": "An MCP Apps server that distributes self-contained HTML mini-games (2048, Sudoku, Minesweeper) to any MCP host.",
+  "description": "An MCP Apps server that distributes self-contained HTML mini-games (2048, Sudoku, Minesweeper, Pacman) to any MCP host.",
   "type": "module",
   "engines": {
     "node": ">=20"

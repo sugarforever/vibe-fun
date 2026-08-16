@@ -20,6 +20,7 @@ test("game sitemap entries use explicit per-game modification dates", () => {
     ["2048", "2026-08-15"],
     ["sudoku", "2026-08-15"],
     ["minesweeper", "2026-08-15"],
+    ["pacman", "2026-08-16"],
   ]);
   const entries = sitemap();
 

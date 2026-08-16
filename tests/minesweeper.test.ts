@@ -55,7 +55,7 @@ test("project metadata lists Minesweeper with the existing games", async () => {
   const pkg = JSON.parse(
     await readFile(new URL("../package.json", import.meta.url), "utf8"),
   ) as { description: string };
-  assert.match(readme, /2048, Sudoku, and Minesweeper/);
+  assert.match(readme, /2048, Sudoku, (?:and )?Minesweeper/);
   assert.match(readme, /play\/minesweeper/);
   assert.match(pkg.description, /Minesweeper/);
 });

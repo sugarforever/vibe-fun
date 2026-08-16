@@ -27,6 +27,10 @@ const MINES_MINI = [
   "", "1", "1", "1", "", "", "", "", "",
   "", "", "", "", "", "", "", "", "",
 ];
+const PACMAN_MINI = [
+  "wwwwwwwwwww", "wp...w...gw", "w.ww.w.ww.w", "w.........w", "w.ww.w.ww.w",
+  "w....w....w", "www.w.w.www", "w...g.g...w", "w.ww.w.ww.w", "wo...p...ow", "wwwwwwwwwww",
+];
 
 const FAQS: { q: string; a: string }[] = [
   {
@@ -74,6 +78,15 @@ function GameThumb({ id }: { id: string }) {
           <span key={i} className={value === "⚑" ? "flag" : value ? "open" : "closed"}>
             {value}
           </span>
+        ))}
+      </div>
+    );
+  }
+  if (id === "pacman") {
+    return (
+      <div className="minipacman" aria-hidden>
+        {PACMAN_MINI.join("").split("").map((cell, i) => (
+          <span key={i} className={cell === "w" ? "wall" : cell === "p" ? "pac" : cell === "g" ? "ghost" : cell === "o" ? "power" : cell === "." ? "dot" : ""} />
         ))}
       </div>
     );
@@ -250,7 +263,7 @@ export default function Home() {
             <div>
               <span className="eyebrow">The library</span>
               <h2 style={{ fontSize: "clamp(26px,3.6vw,38px)", marginTop: 12 }}>
-                Two to start. More on the way.
+                Four games. More on the way.
               </h2>
             </div>
             <p className="lead" style={{ maxWidth: 340 }}>

@@ -13,3 +13,11 @@ test("the Minesweeper catalog card renders a Minesweeper board thumbnail", () =>
   assert.match(nearbyMarkup, /class="minimines"/);
   assert.doesNotMatch(nearbyMarkup.slice(-2500), /class="minisudoku"/);
 });
+
+test("the Pacman catalog card renders a Pacman maze thumbnail", () => {
+  const html = renderToStaticMarkup(createElement(Home));
+  const cardStart = html.indexOf('href="/play/pacman"');
+  assert.notEqual(cardStart, -1);
+  const nearbyMarkup = html.slice(Math.max(0, cardStart - 5000), cardStart);
+  assert.match(nearbyMarkup, /class="minipacman"/);
+});
