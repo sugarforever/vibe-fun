@@ -6,7 +6,6 @@ import {
   ArrowRight,
   Github,
   Server,
-  Layers,
   Sparkle,
   Bolt,
   Plug,
@@ -62,7 +61,7 @@ const FAQS: { q: string; a: string }[] = [
 function GameThumb({ id }: { id: string }) {
   if (id === "2048") {
     return (
-      <div className="mini2048" aria-hidden style={{ width: "72%" }}>
+      <div className="mini2048" aria-hidden>
         {HERO_TILES.map((v, i) => (
           <div key={i} className="t" data-v={v || undefined}>
             {v || ""}
@@ -107,151 +106,27 @@ export default function Home() {
   return (
     <main>
       {/* ---------- HERO ---------- */}
-      <section className="hero">
-        <div className="container hero-grid">
-          <div>
+      <section className="hero hero-compact">
+        <div className="container hero-compact-inner">
+          <div className="hero-copy">
             <span className="eyebrow">
               <Sparkle style={{ width: 15, height: 15 }} /> The game catalog for AI assistants
             </span>
-            <h1 style={{ marginTop: 16 }}>
-              Games for <span className="gradient-text">AI</span>, on tap.
+            <h1>
+              Play here. Bring every game to your <span className="gradient-text">agent</span>.
             </h1>
             <p className="lead">
-              vibe-fun is a game server for AI assistants. Connect it to ChatGPT
-              or Claude once, and a growing catalog of polished, playable games
-              shows up right inside the chat — no installs, no updates, ever.
+              Pick a game below, or connect the whole library to ChatGPT and
+              other MCP-compatible agents.
             </p>
             <div className="hero-cta">
-              <Link className="btn btn-primary" href="/play/2048">
-                <Play /> Play 2048
+              <Link className="btn btn-primary" href="/#games">
+                <Play /> Browse games
               </Link>
               <Link className="btn btn-outline" href="/#connect">
-                <Plug /> Add to your assistant
+                <Plug /> Connect an agent
               </Link>
             </div>
-            <div className="hero-proof">
-              <span className="badge">
-                <span className="dot" /> Renders in ChatGPT today
-              </span>
-              <span className="badge">
-                <span className="dot" /> Open MCP protocol
-              </span>
-              <span className="badge amber">
-                <span className="dot" /> Zero client updates
-              </span>
-            </div>
-          </div>
-
-          <div className="mock" aria-hidden>
-            <div className="mock-bar">
-              <span className="mock-dot" />
-              <span className="mock-dot" />
-              <span className="mock-dot" />
-              <span className="mock-title">ui://apps/2048</span>
-            </div>
-            <div className="mini2048">
-              {HERO_TILES.map((v, i) => (
-                <div key={i} className="t" data-v={v || undefined}>
-                  {v || ""}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- WHY DIFFERENT ---------- */}
-      <section className="section" id="why" style={{ paddingTop: 40 }}>
-        <div className="container">
-          <div className="center" style={{ maxWidth: 660, margin: "0 auto 40px" }}>
-            <span className="eyebrow">A new kind of game portal</span>
-            <h2 style={{ fontSize: "clamp(28px,4vw,42px)", marginTop: 14 }}>
-              Not a game site. Not a one-off chat app.
-            </h2>
-            <p className="lead" style={{ marginTop: 14 }}>
-              Game portals are invisible to your assistant. Single AI game apps
-              are locked to one host, one game. vibe-fun is the layer in between —
-              a shared catalog that travels with you.
-            </p>
-          </div>
-
-          <div className="grid-3 compare">
-            <article className="card compare-card">
-              <h3>Classic game portals</h3>
-              <p>Great games — stuck in a browser tab, invisible to the assistant you actually talk to.</p>
-              <ul className="compare-list">
-                <li className="no">No AI host integration</li>
-                <li className="no">You go to them</li>
-                <li className="no">No shared catalog</li>
-              </ul>
-            </article>
-
-            <article className="card compare-card featured">
-              <div className="compare-tag">vibe-fun</div>
-              <h3>One catalog, every host</h3>
-              <p>Connect once. Every game shows up in your assistant and in the browser — and new ones arrive on their own.</p>
-              <ul className="compare-list">
-                <li className="yes">Plays inside ChatGPT &amp; the browser</li>
-                <li className="yes">Add a game → live on every host</li>
-                <li className="yes">Open protocol, zero lock-in</li>
-              </ul>
-            </article>
-
-            <article className="card compare-card">
-              <h3>Single chat-app games</h3>
-              <p>One game, one host, hard-coded. Shipping the next one means building and submitting a whole new app.</p>
-              <ul className="compare-list">
-                <li className="no">One game per app</li>
-                <li className="no">Per-host rebuilds</li>
-                <li className="no">No catalog to grow</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- HOW IT WORKS ---------- */}
-      <section className="section" id="how">
-        <div className="container">
-          <div className="center" style={{ maxWidth: 640, margin: "0 auto 44px" }}>
-            <span className="eyebrow">How it works</span>
-            <h2 style={{ fontSize: "clamp(28px,4vw,42px)", marginTop: 14 }}>
-              One server. Every host. New games for free.
-            </h2>
-            <p className="lead" style={{ marginTop: 14 }}>
-              Games live in one place. Every assistant that connects stays in sync
-              automatically — the whole point of building on an open protocol.
-            </p>
-          </div>
-
-          <div className="grid-3">
-            {[
-              {
-                icon: <Server />,
-                n: "Step 1",
-                h: "The server hosts the games",
-                p: "Every game is a single, self-contained HTML app served over MCP. No app store, no download, no plugin to maintain.",
-              },
-              {
-                icon: <Layers />,
-                n: "Step 2",
-                h: "Your assistant reads the catalog",
-                p: "Any MCP host lists the games as tools and renders each one as an interactive app, right in the conversation.",
-              },
-              {
-                icon: <Sparkle />,
-                n: "Step 3",
-                h: "New games just appear",
-                p: "Add a game here and every connected host gets it instantly. Clients never update — the library grows on its own.",
-              },
-            ].map((f) => (
-              <article key={f.h} className="card feature">
-                <div className="feature-ico">{f.icon}</div>
-                <span className="step-num">{f.n}</span>
-                <h3 style={{ marginTop: 6 }}>{f.h}</h3>
-                <p>{f.p}</p>
-              </article>
-            ))}
           </div>
         </div>
       </section>
@@ -323,14 +198,13 @@ export default function Home() {
       <section className="section" id="connect">
         <div className="container">
           <div className="center" style={{ maxWidth: 660, margin: "0 auto 40px" }}>
-            <span className="eyebrow">Connect a host</span>
+            <span className="eyebrow">Connect an agent</span>
             <h2 style={{ fontSize: "clamp(28px,4vw,42px)", marginTop: 14 }}>
-              Bring the games to your assistant.
+              Bring the whole library to your agent.
             </h2>
             <p className="lead" style={{ marginTop: 14 }}>
-              Point any MCP host at the endpoint below. Support for rendering
-              interactive apps is rolling out across assistants — here&apos;s where
-              each one stands today.
+              Add this MCP endpoint once. Your agent can discover every game now,
+              and new games appear automatically as the library grows.
             </p>
           </div>
 

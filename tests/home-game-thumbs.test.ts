@@ -29,3 +29,21 @@ test("the growing game catalog uses a compact dedicated grid", () => {
   assert.match(html, /class="card card-hover game-card game-card-compact"/);
   assert.match(html, /class="game-description"/);
 });
+
+test("the homepage prioritizes games, then agent integration, then supporting content", () => {
+  const html = renderToStaticMarkup(createElement(Home));
+  const games = html.indexOf('id="games"');
+  const connect = html.indexOf('id="connect"');
+  const developers = html.indexOf('id="developers"');
+  assert.ok(games > -1 && connect > games && developers > connect);
+  assert.doesNotMatch(html.slice(0, games), /id="why"|id="how"/);
+  assert.match(html.slice(0, games), /Browse games/);
+});
+
+test("compact 2048 thumbnail uses card-relative sizing and clips tile labels", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /\.game-card \.mini2048 \.t \{[^}]*font-size:clamp\(9px,1vw,16px\)/);
+  assert.match(css, /\.game-card \.mini2048 \.t \{[^}]*overflow:hidden/);
+  assert.match(css, /\.game-card \.mini2048[^}]*height:82%/);
+});

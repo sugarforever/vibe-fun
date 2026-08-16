@@ -15,8 +15,7 @@ export const SITE = {
   mcpPath: "/api/mcp",
   nav: [
     { label: "Games", href: "/#games" },
-    { label: "How it works", href: "/#how" },
-    { label: "Connect", href: "/#connect" },
+    { label: "Connect an agent", href: "/#connect" },
     { label: "Developers", href: "/#developers" },
   ],
 } as const;
